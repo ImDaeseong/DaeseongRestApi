@@ -69,6 +69,8 @@ func deleteGame(response http.ResponseWriter, request *http.Request) {
 			break
 		}
 	}
+
+	//전체 내용 보여줌
 	json.NewEncoder(response).Encode(gamedata)
 }
 
@@ -122,11 +124,16 @@ func updateGame(response http.ResponseWriter, request *http.Request) {
 
 			var update = Game{ID: id, PackageName: j1, GameTitle: j2, GameDesc: &GameDesc{Details1: j3, Details2: j4}}
 			gamedata = append(gamedata, update)
-			json.NewEncoder(response).Encode(update)
+
+			//수정 내용만 보여줌
+			//json.NewEncoder(response).Encode(update)
 
 			break
 		}
 	}
+
+	//전체 내용 보여줌
+	json.NewEncoder(response).Encode(gamedata)
 }
 
 //add
@@ -148,11 +155,16 @@ func addGame(response http.ResponseWriter, request *http.Request) {
 	}
 
 	id := strconv.Itoa(len(gamedata) + 1)
-	//fmt.Println("ID : ", id)
+	//fmt.Println("ID:", id)
 
 	var add = Game{ID: id, PackageName: name, GameTitle: title, GameDesc: &GameDesc{Details1: detail1, Details2: detail2}}
 	gamedata = append(gamedata, add)
-	json.NewEncoder(response).Encode(add)
+
+	//추가 내용만 보여줌
+	//json.NewEncoder(response).Encode(add)
+
+	//전체 내용 보여줌
+	json.NewEncoder(response).Encode(gamedata)
 }
 
 func main() {
