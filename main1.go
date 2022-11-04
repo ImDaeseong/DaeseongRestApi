@@ -9,6 +9,11 @@ import (
 
 func handler_EscapeString(response http.ResponseWriter, request *http.Request) {
 
+	fmt.Println("Method : ", request.Method)
+	fmt.Println("URL : ", request.URL)
+	fmt.Println("Header : ", request.Header)
+	fmt.Println("Body : ", request.Body)
+
 	fmt.Fprintf(response, "%q", html.EscapeString(request.URL.Path))
 	//fmt.Fprintf(response, "%s", request.URL.Path[0:])
 }
